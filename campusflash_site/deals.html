@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Deals | CampusFlash HK</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body data-page="deals">
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html">CampusFlash HK</a>
+      <nav class="nav">
+        <a href="index.html" data-nav="home">Home</a>
+        <a href="deals.html" data-nav="deals">Deals</a>
+        <a href="merchant.html" data-nav="merchant">Merchant</a>
+        <a href="about.html" data-nav="about">About</a>
+      </nav>
+      <div class="language-switcher" style="display: flex; align-items: center; gap: 8px;">
+        <div id="desktopAuthWrap" style="display: flex; gap: 8px;"></div>
+        
+        <button class="lang-btn active" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="zhHK">廣東話</button>
+        <button class="lang-btn" data-lang="zhCN">普通话</button>
+      </div>
+      <button class="menu-btn" id="menuBtn">☰</button>
+      </div>
+      <div class="mobile-nav" id="mobileNav">
+        <div id="mobileAuthWrap" style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 12px;"></div>
+        
+        <a href="index.html">Home</a>
+        <a href="deals.html">Deals</a>
+        <a href="merchant.html">Merchant</a>
+        <a href="about.html">About</a>
+      </div>
+  </header>
+
+  <main class="container page-space">
+    <section class="page-title-block">
+      <h1 data-i18n="findTitle">Find your next deal</h1>
+      <p data-i18n="dealsPageDesc">Filter by campus, search by keyword, and claim student offers in a few clicks.</p>
+    </section>
+
+    <section class="card filters-card">
+      <div class="filters">
+        <input type="text" id="searchInput" data-i18n-placeholder="searchPlaceholder" placeholder="Search coffee, lunch, printing..." />
+        <select id="campusFilter">
+          <option value="All">All</option>
+          <option value="HKU">HKU</option>
+          <option value="CUHK">CUHK</option>
+          <option value="PolyU">PolyU</option>
+          <option value="CityU">CityU</option>
+        </select>
+        <select id="categoryFilter">
+          <option value="All">All Categories</option>
+          <option value="Drinks">Drinks</option>
+          <option value="Food">Food</option>
+          <option value="Printing">Printing</option>
+          <option value="Supplies">Supplies</option>
+        </select>
+      </div>
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="all" data-i18n="allDeals">All Deals</button>
+        <button class="tab-btn" data-tab="recommended" data-i18n="recommended">Recommended</button>
+        <button class="tab-btn" data-tab="savefood" data-i18n="foodRescue">Food Rescue</button>
+      </div>
+    </section>
+
+    <section class="detail-grid page-grid">
+      <div class="card">
+        <div id="dealsContainer" class="deals-grid"></div>
+      </div>
+      <aside class="card sticky-card">
+        <h2 data-i18n="dealDetails">Deal details</h2>
+        <div id="detailContent"></div>
+      </aside>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-wrap">
+      <p>© 2026 CampusFlash HK</p>
+      <p data-i18n="footerText">Built for Hong Kong university students and local SMEs.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login | SkipClass HK</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .auth-container { max-width: 420px; margin: 40px auto; }
+    
+    /* 身份切換按鈕樣式 */
+    .role-toggle { display: flex; background: #e2e8f0; border-radius: 14px; padding: 4px; margin-bottom: 24px; }
+    .role-btn { flex: 1; text-align: center; padding: 10px; cursor: pointer; border-radius: 10px; font-weight: bold; color: var(--muted); transition: all 0.2s; }
+    .role-btn.active { background: #fff; color: var(--brand); box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+
+    .auth-tabs { display: flex; margin-bottom: 24px; border-bottom: 2px solid var(--line); }
+    .auth-tab { flex: 1; text-align: center; padding: 12px; cursor: pointer; font-weight: bold; color: var(--muted); }
+    .auth-tab.active { color: var(--brand); border-bottom: 2px solid var(--brand); margin-bottom: -2px; }
+    .auth-form { display: none; gap: 16px; flex-direction: column; }
+    .auth-form.active { display: flex; }
+    .auth-form label { display: grid; gap: 6px; font-weight: 600; font-size: 0.95rem; }
+    .auth-form input { padding: 12px; border-radius: 12px; border: 1px solid var(--line); width: 100%; }
+    .auth-switch { text-align: center; margin-top: 16px; font-size: 0.9rem; color: var(--muted); }
+    .auth-switch a { color: var(--brand); font-weight: bold; cursor: pointer; text-decoration: underline; }
+    
+    /* 動態隱藏區塊 */
+    .dynamic-fields { display: none; gap: 16px; flex-direction: column; }
+    .dynamic-fields.active { display: flex; }
+  </style>
+</head>
+<body data-page="login">
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html">走堂 SkipClass</a>
+      <nav class="nav">
+        <a href="index.html" data-nav="home">Home</a>
+        <a href="deals.html" data-nav="deals">Deals</a>
+        <a href="merchant.html" data-nav="merchant">Merchant</a>
+        <a href="about.html" data-nav="about">About</a>
+      </nav>
+      <div class="language-switcher" style="display: flex; align-items: center; gap: 8px;">
+        <div id="desktopAuthWrap" style="display: flex; gap: 8px;"></div>
+        
+        <button class="lang-btn active" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="zhHK">廣東話</button>
+        <button class="lang-btn" data-lang="zhCN">普通话</button>
+      </div>
+      <button class="menu-btn" id="menuBtn">☰</button>
+      </div>
+      <div class="mobile-nav" id="mobileNav">
+        <div id="mobileAuthWrap" style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 12px;"></div>
+        
+        <a href="index.html">Home</a>
+        <a href="deals.html">Deals</a>
+        <a href="merchant.html">Merchant</a>
+        <a href="about.html">About</a>
+      </div>
+  </header>
+
+  <main class="container page-space">
+    <div class="card auth-container">
+      
+      <div class="role-toggle">
+        <div class="role-btn active" id="roleStudentBtn" data-role="student" data-i18n="studentRole">👨‍🎓 Student</div>
+        <div class="role-btn" id="roleMerchantBtn" data-role="merchant" data-i18n="merchantRole">🏪 Merchant</div>
+      </div>
+
+      <div class="auth-tabs">
+        <div class="auth-tab active" id="tabLogin" data-i18n="signIn">Sign In</div>
+        <div class="auth-tab" id="tabRegister" data-i18n="signUp">Sign Up</div>
+      </div>
+
+      <form id="loginForm" class="auth-form active">
+        <h2 style="margin: 0 0 8px;" data-i18n="authTitle">Welcome Back</h2>
+        <p class="subtle" id="loginDesc" style="margin: 0 0 16px;" data-i18n="authDescStudent">Sign in to claim student-only deals and manage your Smart Pass.</p>
+        
+        <label><span data-i18n="email">Email Address</span>
+          <input type="email" required placeholder="example@email.com" />
+        </label>
+        <label><span data-i18n="password">Password</span>
+          <input type="password" required />
+        </label>
+        
+        <button type="submit" class="btn btn-primary" style="margin-top: 8px;" data-i18n="signInBtn">Login</button>
+        <div class="auth-switch">
+          <span data-i18n="noAccount">Don't have an account?</span> 
+          <a id="linkToRegister" data-i18n="signUp">Sign Up</a>
+        </div>
+      </form>
+
+      <form id="registerForm" class="auth-form">
+        <h2 style="margin: 0 0 8px;" data-i18n="createAccount">Create Account</h2>
+        <p class="subtle" id="registerDesc" style="margin: 0 0 16px;" data-i18n="registerDescStudent">Join SkipClass to unlock off-peak and food rescue deals.</p>
+        
+        <div id="studentFields" class="dynamic-fields active">
+            <label><span data-i18n="fullName">Full Name</span>
+              <input type="text" placeholder="Chan Tai Man" />
+            </label>
+            <label><span data-i18n="studentId">Student ID Number</span>
+              <input type="text" placeholder="3035XXXXXX" />
+            </label>
+          </div>
+  
+          <div id="merchantFields" class="dynamic-fields">
+            <label><span data-i18n="businessName">Business Name</span>
+              <input type="text" placeholder="e.g. Cha Corner" />
+            </label>
+            <label><span data-i18n="contactPerson">Contact Person</span>
+              <input type="text" placeholder="Owner or Manager Name" />
+            </label>
+          </div>
+
+        <label style="margin-top: 16px;"><span data-i18n="email">Email Address</span>
+          <input type="email" required placeholder="example@email.com" />
+        </label>
+        <label><span data-i18n="password">Password</span>
+          <input type="password" required />
+        </label>
+        
+        <button type="submit" class="btn btn-primary" style="margin-top: 8px;" data-i18n="signUpBtn">Create Account</button>
+        <div class="auth-switch">
+          <span data-i18n="hasAccount">Already have an account?</span> 
+          <a id="linkToLogin" data-i18n="signIn">Sign In</a>
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

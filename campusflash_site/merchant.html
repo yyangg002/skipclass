@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Merchant | CampusFlash HK</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body data-page="merchant">
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html">CampusFlash HK</a>
+      <nav class="nav">
+        <a href="index.html" data-nav="home">Home</a>
+        <a href="deals.html" data-nav="deals">Deals</a>
+        <a href="merchant.html" data-nav="merchant">Merchant</a>
+        <a href="about.html" data-nav="about">About</a>
+      </nav>
+      <div class="language-switcher" style="display: flex; align-items: center; gap: 8px;">
+        <div id="desktopAuthWrap" style="display: flex; gap: 8px;"></div>
+        
+        <button class="lang-btn active" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="zhHK">廣東話</button>
+        <button class="lang-btn" data-lang="zhCN">普通话</button>
+      </div>
+      <button class="menu-btn" id="menuBtn">☰</button>
+      </div>
+      <div class="mobile-nav" id="mobileNav">
+        <div id="mobileAuthWrap" style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 12px;"></div>
+        
+        <a href="index.html">Home</a>
+        <a href="deals.html">Deals</a>
+        <a href="merchant.html">Merchant</a>
+        <a href="about.html">About</a>
+      </div>
+  </header>
+
+  <main class="container page-space">
+    <section class="page-title-block">
+      <h1 data-i18n="merchantPageTitle">Merchant dashboard</h1>
+      <p data-i18n="merchantPageDesc">Create student flash deals, track interest, and fill low-demand hours near campus.</p>
+    </section>
+
+    <section class="detail-grid merchant-grid-layout">
+      <div class="card">
+        <h2 data-i18n="createDealForm">Create a flash deal</h2>
+        <form id="merchantForm" class="merchant-form">
+          <div class="form-grid">
+            <label><span data-i18n="dealTitle">Deal title</span><input required name="title" type="text" /></label>
+            <label><span data-i18n="vendorName">Vendor name</span><input required name="vendor" type="text" /></label>
+            <label><span data-i18n="campus">Campus</span>
+              <select name="campus" required>
+                <option value="HKU">HKU</option>
+                <option value="CUHK">CUHK</option>
+                <option value="PolyU">PolyU</option>
+                <option value="CityU">CityU</option>
+              </select>
+            </label>
+            <label><span data-i18n="category">Category</span>
+              <select name="category" required>
+                <option value="Drinks">Drinks</option>
+                <option value="Food">Food</option>
+                <option value="Printing">Printing</option>
+                <option value="Supplies">Supplies</option>
+              </select>
+            </label>
+            <label><span data-i18n="distance">Distance</span><input required name="distance" type="text" placeholder="250m" /></label>
+            <label><span data-i18n="discount">Discount %</span><input required name="discount" type="number" min="1" max="90" /></label>
+            <label><span data-i18n="timeRemaining">Minutes left</span><input required name="minutesLeft" type="number" min="5" max="180" /></label>
+            <label><span data-i18n="spotsLeft">Spots left</span><input required name="stockLeft" type="number" min="1" max="999" /></label>
+          </div>
+          <label><span data-i18n="description">Description</span><textarea required name="description" rows="4"></textarea></label>
+          <div class="checkbox-row">
+            <label><input type="checkbox" name="recommended" /> <span data-i18n="recommended">Recommended</span></label>
+            <label><input type="checkbox" name="trending" /> <span data-i18n="trending">Trending</span></label>
+            <label><input type="checkbox" name="sustainable" /> <span data-i18n="foodRescue">Food Rescue</span></label>
+          </div>
+          <button class="btn btn-primary" type="submit" data-i18n="saveDeal">Save deal</button>
+          <p id="merchantMessage" class="form-message"></p>
+        </form>
+      </div>
+
+      <div class="side-stack">
+        <div class="card">
+          <h3 data-i18n="merchantPageTitle">Merchant dashboard</h3>
+          <div class="stats-mini">
+            <div><span data-i18n="activeDeals">Active Deals</span><strong id="merchantDealCount">0</strong></div>
+            <div><span data-i18n="flashClaims">Flash Claims</span><strong id="merchantClaimCount">0</strong></div>
+          </div>
+        </div>
+        <div class="card">
+          <h3 data-i18n="yourDeals">Your saved deals</h3>
+          <div id="merchantDealsList" class="merchant-list"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-wrap">
+      <p>© 2026 CampusFlash HK</p>
+      <p data-i18n="footerText">Built for Hong Kong university students and local SMEs.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

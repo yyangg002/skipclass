@@ -1,0 +1,202 @@
+:root {
+  --bg: #f8fafc;
+  --text: #0f172a;
+  --muted: #64748b;
+  --line: #e2e8f0;
+  --brand: #0f172a;
+  --brand-soft: #1e293b;
+  --card: #ffffff;
+  --green: #dcfce7;
+  --blue: #dbeafe;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: linear-gradient(180deg, #f8fafc, #ffffff);
+  color: var(--text);
+  line-height: 1.5;
+}
+a { color: inherit; text-decoration: none; }
+button, input, select, textarea { font: inherit; }
+.container { width: min(1180px, 92%); margin: 0 auto; }
+.card {
+  background: var(--card);
+  border-radius: 24px;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+  padding: 24px;
+}
+.site-header {
+  position: sticky; top: 0; z-index: 10;
+  background: rgba(255,255,255,0.92); backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(226,232,240,0.9);
+}
+.nav-wrap {
+  display: flex; align-items: center; justify-content: space-between;
+  min-height: 72px; gap: 16px;
+}
+.brand { font-weight: 800; font-size: 1.2rem; }
+.nav { display: flex; gap: 20px; }
+.nav a { color: var(--muted); font-weight: 600; }
+.nav a.active, .nav a:hover { color: var(--text); }
+.language-switcher { display: flex; gap: 8px; }
+.lang-btn, .menu-btn {
+  border: 1px solid var(--line); background: #fff; color: var(--text);
+  border-radius: 12px; padding: 9px 12px; cursor: pointer;
+}
+.lang-btn.active { background: var(--brand); color: #fff; border-color: var(--brand); }
+.menu-btn { display: none; }
+.mobile-nav {
+  display: none; padding: 0 4% 16px; gap: 10px; flex-direction: column;
+}
+.mobile-nav a { color: var(--muted); font-weight: 600; }
+.hero {
+  background: linear-gradient(180deg, var(--brand), var(--brand-soft));
+  color: #fff; padding: 56px 0 42px; border-bottom-left-radius: 32px; border-bottom-right-radius: 32px;
+}
+.hero-grid { display: grid; grid-template-columns: 1.2fr 0.9fr; gap: 28px; align-items: center; }
+.pill {
+  display: inline-block; padding: 10px 16px; border-radius: 999px;
+  background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.18);
+  margin-bottom: 14px; font-size: 0.95rem;
+}
+.hero h1 { font-size: clamp(2.6rem, 5vw, 4rem); line-height: 1.05; margin: 0 0 14px; }
+.hero p { color: #dbe4ef; max-width: 650px; }
+.hero-actions, .detail-actions, .deal-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 20px; }
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 12px 18px; border-radius: 14px; border: 1px solid transparent; font-weight: 700; cursor: pointer;
+}
+.btn-primary { background: #fff; color: var(--brand); }
+.btn-secondary { background: transparent; color: #fff; border-color: rgba(255,255,255,0.25); }
+.btn-outline { background: #fff; color: var(--text); border-color: var(--line); }
+.campus-tags { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 20px; }
+.campus-tags span {
+  padding: 8px 12px; border-radius: 999px; background: rgba(255,255,255,0.12); color: #dbe4ef;
+}
+.featured-card { color: var(--text); }
+.section-label, .featured-meta span, .stat-card p, .stat-card span, .subtle, .perk-box p, .filters-card p,
+.deal-card p.meta, .detail-box span, .merchant-list small, .form-message {
+  color: var(--muted);
+}
+.featured-card h2 { margin: 8px 0 4px; font-size: 2rem; }
+.featured-discount { font-size: 2.3rem; font-weight: 800; margin-bottom: 18px; }
+.featured-meta { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.featured-meta div, .detail-box, .perk-box, .merchant-list .merchant-item, .stats-mini div {
+  background: #f8fafc; border: 1px solid var(--line); border-radius: 18px; padding: 14px;
+}
+.featured-meta strong { display: block; margin-top: 4px; }
+.recommend-box { margin-top: 16px; padding: 16px; border-radius: 18px; border: 1px solid var(--line); background: #f8fafc; }
+.stats-grid, .home-panels, .page-grid, .page-space, .merchant-grid-layout { margin-top: 28px; }
+.stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.stat-card h3 { font-size: 2rem; margin: 8px 0; }
+.home-panels { display: grid; grid-template-columns: 1.4fr 0.8fr; gap: 20px; }
+.side-stack { display: grid; gap: 20px; }
+.panel-head, .filters, .tabs, .deal-top, .deal-meta, .urgency-row, .footer-wrap {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+}
+.filters, .tabs { flex-wrap: wrap; }
+.filters input, .filters select, .merchant-form input, .merchant-form select, .merchant-form textarea {
+  width: 100%; padding: 12px 14px; border-radius: 14px; border: 1px solid var(--line); background: #fff;
+}
+.filters input { min-width: 260px; }
+.tab-btn {
+  border: none; background: #e2e8f0; color: var(--text); padding: 10px 15px; border-radius: 12px; cursor: pointer; font-weight: 700;
+}
+.tab-btn.active { background: var(--brand); color: #fff; }
+.deals-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 18px; }
+.deal-card { border: 1px solid #f1f5f9; transition: transform 0.18s ease, box-shadow 0.18s ease; }
+.deal-card:hover { transform: translateY(-4px); box-shadow: 0 14px 38px rgba(15,23,42,0.12); }
+.deal-badges { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 10px; }
+.badge-pill { padding: 6px 10px; border-radius: 999px; font-size: 12px; background: #e2e8f0; }
+.badge-trending { background: var(--blue); }
+.badge-save { background: var(--green); }
+.deal-top h3 { margin: 0 0 6px; }
+.deal-discount { font-size: 1.8rem; font-weight: 800; }
+.progress-bar { width: 100%; height: 8px; background: #e2e8f0; border-radius: 999px; overflow: hidden; margin-top: 8px; }
+.progress-fill { height: 100%; background: var(--brand); }
+.deal-actions { margin-top: 16px; }
+.deal-actions button, .detail-actions button { flex: 1; }
+.page-title-block h1 { font-size: clamp(2rem, 4vw, 3rem); margin: 0 0 8px; }
+.page-title-block p { color: var(--muted); margin: 0; }
+.page-space { padding: 30px 0 40px; }
+.detail-grid { display: grid; grid-template-columns: 1.55fr 0.85fr; gap: 20px; align-items: start; }
+.sticky-card { position: sticky; top: 96px; }
+.detail-boxes, .merchant-grid, .form-grid, .stats-mini { display: grid; gap: 12px; }
+.detail-boxes { grid-template-columns: repeat(3, 1fr); margin: 18px 0; }
+.merchant-grid, .stats-mini { grid-template-columns: repeat(2, 1fr); }
+.form-grid { grid-template-columns: repeat(2, 1fr); }
+.merchant-form { display: grid; gap: 16px; }
+.merchant-form label { display: grid; gap: 8px; font-weight: 700; }
+.checkbox-row { display: flex; gap: 14px; flex-wrap: wrap; }
+.form-message { min-height: 1.5em; margin: 0; }
+.merchant-list { display: grid; gap: 12px; margin-top: 12px; }
+.merchant-item h4 { margin: 0 0 4px; }
+.steps, .bullet-list { padding-left: 18px; color: var(--text); }
+.steps li, .bullet-list li { margin-bottom: 10px; }
+.site-footer { margin-top: 40px; border-top: 1px solid var(--line); background: #fff; }
+.footer-wrap { padding: 18px 0; color: var(--muted); flex-wrap: wrap; }
+.empty-state { color: var(--muted); padding: 16px 0; }
+
+@media (max-width: 1080px) {
+  .hero-grid, .home-panels, .detail-grid { grid-template-columns: 1fr; }
+  .deals-grid { grid-template-columns: repeat(2, 1fr); }
+  .sticky-card { position: static; }
+}
+@media (max-width: 760px) {
+  .nav { display: none; }
+  .menu-btn { display: block; }
+  .mobile-nav.open { display: flex; }
+  .language-switcher { margin-left: auto; }
+  .stats-grid, .deals-grid, .featured-meta, .detail-boxes, .merchant-grid, .form-grid, .stats-mini { grid-template-columns: 1fr; }
+  .panel-head, .filters, .footer-wrap, .nav-wrap { align-items: stretch; }
+  .filters, .panel-head, .nav-wrap { flex-direction: column; }
+  .language-switcher { width: 100%; justify-content: center; }
+}
+
+
+/* 美化所有下拉選單 (移除預設 3D 樣式，加入自訂箭頭) */
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%2364748b%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px top 50%;
+  background-size: 10px auto;
+  padding-right: 36px !important;
+  cursor: pointer;
+}
+
+/* 修復 Checkbox 和文字被擠成上下的問題 */
+.checkbox-row { margin-top: 8px; }
+.checkbox-row label {
+  display: flex !important; /* 強制覆蓋外層的 grid */
+  flex-direction: row; 
+  align-items: center; 
+  gap: 8px; 
+  font-weight: normal; 
+  cursor: pointer;
+}
+.checkbox-row input[type="checkbox"] {
+  width: 18px; 
+  height: 18px; 
+  margin: 0; 
+  cursor: pointer;
+}
+
+
+/* 1. 讓全站的主要按鈕變成深色實體按鈕，在白背景上更醒目 */
+.btn-primary { 
+  background: var(--brand); 
+  color: #fff !important; 
+  border: 1px solid var(--brand);
+}
+
+/* 2. 保持首頁深色背景 (Hero區塊) 裡的按鈕維持原本的白色設計 */
+.hero .btn-primary { 
+  background: #fff; 
+  color: var(--brand) !important; 
+  border-color: transparent;
+}

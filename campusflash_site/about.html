@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About | CampusFlash HK</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body data-page="about">
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html">CampusFlash HK</a>
+      <nav class="nav">
+        <a href="index.html" data-nav="home">Home</a>
+        <a href="deals.html" data-nav="deals">Deals</a>
+        <a href="merchant.html" data-nav="merchant">Merchant</a>
+        <a href="about.html" data-nav="about">About</a>
+      </nav>
+      <div class="language-switcher" style="display: flex; align-items: center; gap: 8px;">
+        <div id="desktopAuthWrap" style="display: flex; gap: 8px;"></div>
+        
+        <button class="lang-btn active" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="zhHK">廣東話</button>
+        <button class="lang-btn" data-lang="zhCN">普通话</button>
+      </div>
+      <button class="menu-btn" id="menuBtn">☰</button>
+      </div>
+      <div class="mobile-nav" id="mobileNav">
+        <div id="mobileAuthWrap" style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 12px;"></div>
+        
+        <a href="index.html">Home</a>
+        <a href="deals.html">Deals</a>
+        <a href="merchant.html">Merchant</a>
+        <a href="about.html">About</a>
+      </div>
+  </header>
+
+  <main class="container page-space">
+    <section class="page-title-block">
+      <h1 data-i18n="aboutTitle">About CampusFlash HK</h1>
+      <p data-i18n="aboutDesc">CampusFlash HK is designed to connect university students with nearby SMEs through quick, location-based offers.</p>
+    </section>
+
+    <section class="detail-grid page-grid">
+      <div class="card info-card">
+        <h2 data-i18n="missionTitle">Our mission</h2>
+        <p data-i18n="missionText">We help students save money and help small businesses attract more customers, especially during slower hours.</p>
+        <h2 data-i18n="whyUsefulTitle">Why it is useful</h2>
+        <ul class="bullet-list">
+          <li data-i18n="why1">Students get easy access to affordable food, drinks, printing, and study supplies.</li>
+          <li data-i18n="why2">SMEs can create limited-time promotions and increase local visibility.</li>
+          <li data-i18n="why3">Food rescue offers can reduce waste near campus.</li>
+        </ul>
+      </div>
+
+      <div class="side-stack">
+        <div class="card">
+          <h3 data-i18n="keyFeaturesTitle">Key features</h3>
+          <ul class="bullet-list">
+            <li data-i18n="feature1">Multi-language interface</li>
+            <li data-i18n="feature2">Campus-based filtering</li>
+            <li data-i18n="feature3">Merchant flash deal creator</li>
+            <li data-i18n="feature4">Claim tracking with local storage</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3 data-i18n="prototypeNoteTitle">Prototype note</h3>
+          <p data-i18n="prototypeNoteText">This version is a frontend-ready prototype. It works as a static website and stores demo data locally in your browser.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-wrap">
+      <p>© 2026 CampusFlash HK</p>
+      <p data-i18n="footerText">Built for Hong Kong university students and local SMEs.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
