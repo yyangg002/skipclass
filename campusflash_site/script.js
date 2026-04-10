@@ -86,6 +86,7 @@ let selectedTab = 'all';
 let selectedDeal = null;
 const postScanDealKey = 'skipclass_post_scan_deal_id';
 const activeSmartPassDealKey = 'skipclass_active_smartpass_deal_id';
+const defaultScanBaseUrl = 'https://yyangg002.github.io/skipclass';
 
 // --- 狀態管理 (State Management) ---
 function getCurrentUser() {
@@ -150,24 +151,7 @@ function consumePostScanRedirectDealId() {
   return id;
 }
 function getSmartPassBaseUrl() {
-  const configured = localStorage.getItem('skipclass_public_base_url');
-  if (configured) return configured.replace(/\/+$/, '');
-  if (window.location.protocol === 'http:' || window.location.protocol === 'https:') {
-    return window.location.origin;
-  }
-  return '';
-}
-function getConfiguredPublicBaseUrl() {
-  return (localStorage.getItem('skipclass_public_base_url') || '').replace(/\/+$/, '');
-}
-function setConfiguredPublicBaseUrl(url) {
-  const clean = (url || '').trim().replace(/\/+$/, '');
-  if (!clean) {
-    localStorage.removeItem('skipclass_public_base_url');
-    return '';
-  }
-  localStorage.setItem('skipclass_public_base_url', clean);
-  return clean;
+  return defaultScanBaseUrl;
 }
 function getDealIdFromUrl() {
   try {
@@ -189,7 +173,8 @@ function buildSmartPassQrPayload(user, deal) {
       discount: deal?.discount ? `${deal.discount}%` : '',
       campus: deal?.campus || '',
       timeLeft: deal?.minutesLeft ? `${deal.minutesLeft} min` : '',
-      spotsLeft: deal?.stockLeft ? String(deal.stockLeft) : ''
+      spotsLeft: deal?.stockLeft ? String(deal.stockLeft) : '',
+      v: String(Date.now())
     });
     return `${baseUrl}/scan.html?${params.toString()}`;
   }
@@ -251,13 +236,6 @@ function setupSmartPass() {
          ✓ Active Student (${user.name})
        </div>
 
-       <div style="text-align:left; margin-bottom: 12px;">
-         <label for="publicBaseUrlInput" style="display:block; font-size: 12px; color: var(--muted); margin-bottom: 6px;">Public URL for phone scan (optional)</label>
-         <input id="publicBaseUrlInput" type="url" placeholder="https://your-domain.com" style="width:100%; border:1px solid var(--line); border-radius:8px; padding:8px 10px; margin-bottom:8px; font-size: 13px;" />
-         <button class="btn btn-outline" id="savePublicBaseUrlBtn" style="width:100%;">Save Public URL</button>
-         <p id="publicBaseUrlMsg" class="subtle" style="margin:8px 0 0; font-size: 12px;">If empty, QR uses text fallback link.</p>
-       </div>
-       
        <button class="btn btn-primary" id="simScanBtn" style="width: 100%; margin-bottom: 10px;">🔍 ${getText('simulateScan')}</button>
        <button class="btn btn-outline" id="closeModalBtn" style="width: 100%;">Close</button>
     </div>
@@ -271,21 +249,6 @@ function setupSmartPass() {
   const spQrImage = document.getElementById('spQrImage');
   const spSuccessWrap = document.getElementById('spSuccessWrap');
   const spSub = document.getElementById('spSub');
-  const publicBaseUrlInput = document.getElementById('publicBaseUrlInput');
-  const savePublicBaseUrlBtn = document.getElementById('savePublicBaseUrlBtn');
-  const publicBaseUrlMsg = document.getElementById('publicBaseUrlMsg');
-  if (publicBaseUrlInput) publicBaseUrlInput.value = getConfiguredPublicBaseUrl();
-  if (savePublicBaseUrlBtn) {
-    savePublicBaseUrlBtn.onclick = () => {
-      const saved = setConfiguredPublicBaseUrl(publicBaseUrlInput?.value || '');
-      if (publicBaseUrlMsg) {
-        publicBaseUrlMsg.textContent = saved
-          ? `Saved: ${saved}`
-          : 'Cleared. QR will use text fallback link.';
-      }
-      refreshSmartPassQr();
-    };
-  }
   const refreshSmartPassQr = () => {
     if (!spQrImage) return;
     const activeDealId = getActiveSmartPassDealId();
