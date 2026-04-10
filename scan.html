@@ -63,7 +63,7 @@
   <main class="card">
     <h1>Smart Pass Coupon Detail</h1>
     <p class="sub">Scanned from SkipClass QR</p>
-    <div class="ok">Verified coupon information</div>
+    <div class="ok" id="scanStatus">Verified coupon information</div>
     <section class="grid">
       <div class="item"><div class="label">Student</div><div class="value" id="student">-</div></div>
       <div class="item"><div class="label">Coupon ID</div><div class="value" id="couponId">-</div></div>
@@ -77,7 +77,27 @@
   </main>
   <script>
     const params = new URLSearchParams(window.location.search);
-    const read = (k) => params.get(k) || '-';
+    const fakeData = {
+      student: 'Chan Tai Man',
+      couponId: 'CF-2026-1008',
+      title: 'Milk Tea Happy Hour',
+      vendor: 'Cha Corner',
+      discount: '35%',
+      campus: 'PolyU',
+      timeLeft: '18 min',
+      spotsLeft: '9'
+    };
+
+    const keys = ['student', 'couponId', 'title', 'vendor', 'discount', 'campus', 'timeLeft', 'spotsLeft'];
+    const hasRealData = keys.some((k) => (params.get(k) || '').trim() !== '');
+    const forceDemo = params.get('demo') === '1';
+    const source = (!hasRealData || forceDemo) ? fakeData : null;
+
+    const read = (k) => {
+      if (source) return source[k] || '-';
+      return params.get(k) || '-';
+    };
+
     document.getElementById('student').textContent = read('student');
     document.getElementById('couponId').textContent = read('couponId');
     document.getElementById('title').textContent = read('title');
@@ -86,6 +106,9 @@
     document.getElementById('campus').textContent = read('campus');
     document.getElementById('timeLeft').textContent = read('timeLeft');
     document.getElementById('spotsLeft').textContent = read('spotsLeft');
+
+    const status = document.getElementById('scanStatus');
+    status.textContent = source ? 'Demo coupon information (fake data)' : 'Verified coupon information';
   </script>
 </body>
 </html>
